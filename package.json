@@ -1,0 +1,47 @@
+{
+  "name": "imaudacity_project1_abdelhamy",
+  "version": "1.0.0",
+  "description": "To Resize Images",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx tsc && jasmine",
+    "build": "npx tsc",
+    "start": "npm run build && nodemon dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdelhamy/IMAUdacity_Project1_Abdelhamy.git"
+  },
+  "keywords": [],
+  "author": "Mostafa Abdelhamy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdelhamy/IMAUdacity_Project1_Abdelhamy/issues"
+  },
+  "homepage": "https://github.com/Abdelhamy/IMAUdacity_Project1_Abdelhamy#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jasmine": "^3.10.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "sharp": "^0.30.4",
+    "supertest": "^6.1.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^3.10.2",
+    "@types/node": "^16.11.12",
+    "@types/sharp": "^0.30.2",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  }
+}
