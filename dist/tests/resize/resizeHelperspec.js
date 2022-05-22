@@ -39,65 +39,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var promises_1 = __importDefault(require("fs/promises"));
 var path_1 = __importDefault(require("path"));
 var resizeImage_1 = __importDefault(require("../../resizeImage"));
-var imageResize = express_1.default.Router();
-imageResize.get('/', function (req, resqust) { return __awaiter(void 0, void 0, void 0, function () {
-    var imageName, h, w, fPFullImage, fPResizedImage, fImage, existingImageResized;
+var fPResizedImage = path_1.default.resolve(__dirname, '../../../assets/ResizedF/fjord.jpg');
+it('rejects promise if something went wrong', function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                imageName = req.query['imagename'];
-                h = req.query['h'] ? parseInt(req.query['h'], 10) : null;
-                w = req.query['w'] ? parseInt(req.query['w'], 10) : null;
-                if (!imageName || !h || !w) {
-                    resqust.status(400).send('Please make sure url contains correct imagename, H => height and w => width params');
-                    return [2 /*return*/];
-                }
-                fPFullImage = "".concat(path_1.default.resolve(__dirname, "../../../assets/full/".concat(imageName, ".jpg")));
-                fPResizedImage = "".concat(path_1.default.resolve(__dirname, "../../../assets/ResizedF/".concat(imageName, "-").concat(h, "x").concat(w, ".jpg")));
-                return [4 /*yield*/, promises_1.default.stat(fPFullImage).catch(function () {
-                        resqust.status(404).send('Image does not exist Select from <br> fjord ,encenadaport , icelandwaterfall ,palmtunnel,santamonica ');
-                        return null;
-                    })];
+            case 0: return [4 /*yield*/, expectAsync(resizeImage_1.default.resizeImageFunction({
+                    h: 100,
+                    w: 150,
+                    fPFullImage: '',
+                    fPResizedImage: fPResizedImage,
+                })).toBeRejected()];
             case 1:
-                fImage = _a.sent();
-                if (!fImage) {
-                    return [2 /*return*/];
-                }
-                return [4 /*yield*/, promises_1.default.stat(fPResizedImage).catch(function () {
-                        return null;
-                    })];
-            case 2:
-                existingImageResized = _a.sent();
-                if (existingImageResized) {
-                    promises_1.default.readFile(fPResizedImage)
-                        .then(function (ResizedData) {
-                        resqust.status(200).contentType('jpg').send(ResizedData);
-                    })
-                        .catch(function () {
-                        resqust.status(500).send('Error occured processing the image');
-                    });
-                }
-                else {
-                    resizeImage_1.default
-                        .resizeImageFunction({
-                        fPFullImage: fPFullImage,
-                        fPResizedImage: fPResizedImage,
-                        h: h,
-                        w: w,
-                    })
-                        .then(function (resizedImage) {
-                        resqust.status(200).contentType('jpg').send(resizedImage);
-                    })
-                        .catch(function () {
-                        resqust.status(500).send('Error occured processing the image');
-                    });
-                }
+                _a.sent();
                 return [2 /*return*/];
         }
     });
 }); });
-exports.default = imageResize;
